@@ -1,5 +1,11 @@
 Changelog:
 
+2022/06/26
+- Fixed live-generation of card preview.
+- Temporarily removed the RANKS and NEGATIVE LEVELS.
+
+- known issue: Card Type Brackets on Xyz do not format to white.
+
 2022/06/24
 - Added Ritual, Synchro, Xyz, AND Dark Synchro
 - Added Ranks/Negative Levels for their respective card type.
