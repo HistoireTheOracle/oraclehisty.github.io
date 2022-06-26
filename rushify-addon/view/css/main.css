@@ -316,12 +316,12 @@ textarea.input{
     padding: 0px 5px 0px 5px;
 }
 
-.rarity-rush{
-    color: #e5e619 !important;
+.rarity-whitename{
+    color:white !important
 }
 
-.rarity-whitename{
-    color:#FFFF !important;
+.rarity-rush{
+    color: #e5e619 !important;
 }
 
 .info h2{

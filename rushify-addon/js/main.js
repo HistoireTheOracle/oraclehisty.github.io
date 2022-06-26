@@ -63,16 +63,8 @@ $(document).ready(function(){
             $('.card-type-1').html(monsterType);
         }
         //Change the monster level
-        if (cardTypeSelected != "Xyz" || cardTypeSelected != "Dark-Synchro"){
-            let level = $('#level').val() > 13 ? 13 : ($('#level').val() < 0 ? 0 : $('#level').val());
-            $('.card-level').attr('src', 'view/img/stat/Level-' + level + '.png');
-        } else if (cardTypeSelected == "Xyz"){
-            let level = $('#level').val() > 13 ? 13 : ($('#level').val() < 0 ? 0 : $('#level').val());
-            $('.card-level').attr('src', 'view/img/stat/Rank-' + level + '.png');
-        } else if (cardTypeSelected == "Dark Synchro"){
-            let level = $('#level').val() > 13 ? 13 : ($('#level').val() < 0 ? 0 : $('#level').val());
-            $('.card-level').attr('src', 'view/img/stat/NegLevel-' + level + '.png');
-        }
+        let level = $('#level').val() > 12 ? 12 : ($('#level').val() < 1 ? 1 : $('#level').val());
+        $('.card-level').attr('src', 'view/img/stat/Level-' + level + '.png');
         //Change the atk/def
         if (cardTypeSelected != "Spell" && cardTypeSelected != "Trap"){
             $('.card-atk').html($('#atk').val() < 0 ? 0 : $('#atk').val());
@@ -94,22 +86,36 @@ $(document).ready(function(){
         }
         //Change rarities
         let rarity = $('#rarity option:selected').val();
-        if (rarity == "common" && (cardTypeSelected != "Xyz" && cardTypeSelected != "Dark-Synchro")){
-            $('.card-name-1').removeClass('rarity-rush');
+        if ((rarity == "common") && (cardTypeSelected != "Xyz")){
             $('.card-name-1').removeClass('rarity-whitename');
-            $('.card-atk').removeClass('rarity-rush');
-            $('.card-def').removeClass('rarity-rush');
-            $('.card-max-atk').removeClass('rarity-rush');
-        } else if (rarity == "common" && (cardTypeSelected == "Xyz" || cardTypeSelected == "Dark-Synchro")){
+            $('.card-type-1').removeClass('rarity-whitename');
+            $('.card-type::before').removeClass('rarity-whitename');
+            $('.card-type::after').removeClass('rarity-whitename');
             $('.card-name-1').removeClass('rarity-rush');
-            $('.card-name-1').addClass('rarity-whitename');
             $('.card-atk').removeClass('rarity-rush');
             $('.card-def').removeClass('rarity-rush');
             $('.card-max-atk').removeClass('rarity-rush');
-        } else{
+        } else if ((rarity == "common") && (cardTypeSelected == "Xyz")){
+            if (!$('.card-name-1').hasClass('rarity-whitename')){
+                $('.card-type-1').addClass('rarity-whitename');
+                $('.card-name-1').addClass('rarity-whitename');
+                $('.card-type::before').addClass('rarity-whitename');
+                $('.card-type::after').addClass('rarity-whitename');
+                $('.card-name-1').removeClass('rarity-rush');
+                $('.card-atk').removeClass('rarity-rush');
+                $('.card-def').removeClass('rarity-rush');
+                $('.card-max-atk').removeClass('rarity-rush');
             }
+        } else if ((rarity != "common") && (cardTypeSelected == "Xyz")) {
             if (!$('.card-name-1').hasClass('rarity-rush')){
+                $('.card-name-1').removeClass("rarity-whitename");
                 $('.card-name-1').addClass('rarity-rush');
+            }
+            if (!$('.card-type-1').hasClass('rarity-rush')){
+                $('.card-type::before').addClass('rarity-whitename');
+                $('.card-type::after').addClass('rarity-whitename');
+                $('.card-type-1').removeClass("rarity-rush");
+                $('.card-type-1').addClass('rarity-whitename');
             }
             if (!$('.card-atk').hasClass('rarity-rush')){
                 $('.card-atk').addClass('rarity-rush');
@@ -120,7 +126,26 @@ $(document).ready(function(){
             if (!$('.card-max-atk').hasClass('rarity-rush')){
                 $('.card-max-atk').addClass('rarity-rush');
             }
-        },
+        } else {
+            if (!$('.card-name-1').hasClass('rarity-rush')){
+                $('.card-name-1').removeClass("rarity-whitename");
+                $('.card-name-1').addClass('rarity-rush');
+            }
+            if ($('.card-type-1').hasClass('rarity-whitename')){
+                $('.card-type-1').removeClass("rarity-whitename");
+                $('.card-type::before').removeClass('rarity-whitename');
+                $('.card-type::after').removeClass('rarity-whitename');
+            }
+            if (!$('.card-atk').hasClass('rarity-rush')){
+                $('.card-atk').addClass('rarity-rush');
+            }
+            if (!$('.card-def').hasClass('rarity-rush')){
+                $('.card-def').addClass('rarity-rush');
+            }
+            if (!$('.card-max-atk').hasClass('rarity-rush')){
+                $('.card-max-atk').addClass('rarity-rush');
+            }
+        }
 
         //Change card creator
         $('.card-creator').html($('#creator').val());
